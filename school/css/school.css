@@ -1,0 +1,54 @@
+#schoolHd{
+    position: relative;
+    margin-left: 600px;
+    
+}
+
+#Liste{
+    position: relative;
+    margin-left: 500px;
+}
+
+
+#tblname{
+    position: relative;
+    margin: 10px 0;
+            width: 150px;
+
+}
+#tblcode{
+    position: relative;
+    margin: 10px 0;
+            width: 50px;
+
+}
+#tblactive{
+    position: relative;
+    margin: 10px 0;
+            width: 70px;
+
+}
+#tblapply{
+    position: relative;
+    margin: 10px 0;
+            width: 150px;
+
+}
+
+#textName{
+    background-color:pink;
+}
+#textCode{
+    background-color:pink;
+}
+#checkActive{
+    background-color:pink;
+}
+#add {
+    background-color:rgb(214, 252, 109);
+    position: relative;
+    margin-left: 62px;
+}
+#name {width:100px;height:100px;padding:5px;background:#dab3da;color:rgb(8, 42, 44);}
+#code {width:100px;height:100px;padding:5px;background:#dab3da;color:rgb(8, 42, 44);}
+#active {width:100px;height:100px;padding:5px;background:#dab3da;color:rgb(8, 42, 44);}

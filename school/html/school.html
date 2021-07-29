@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../css/school.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../jquery/school.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1 id=schoolHd class="text-hide" style="background-image: url('...');">SCHOOL LIST</h1>
+
+    <div class="container">
+        <table class="table" id="liste">
+            <tr>
+                <th class="table-danger" scope="col" id=tblId>Id</th>
+                <th class="table-danger" scope="col" id=tblName>Name</th>
+                <th class="table-danger" scope="col" id=tblCode>Code</th>
+                <th class="table-danger" scope="col" id=tblActive>Active</th>
+                <th class="table-danger" scope="col" id=tblApply>Apply</th>
+            </tr>
+            <tbody id="schoolList"></tbody>
+        </table>
+    </div><br>
+    <div id="appId" style="margin-left: 350px;">
+        <form action="#" id="formOne" onsubmit="saveSchool('#formOne','memberSave')">
+            <input type="text" id="textId" style="display: none;">
+            <font id=name color="blue">Name :</font> <input type="text" id="textName" scope="row" required>
+            <font id=code color="blue">Code :</font> <input type="text" id="textCode" scope="row" required>
+            <font id=active color="blue">Active :</font> <input type="checkbox" id="checkActive"
+                class="form-check-input">
+
+            <input type="submit" value="            SAVE           " id="add">
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../css/student.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../jquery/student.js"></script>
+</head>
+
+<body>
+    <h1>STUDENT LIST</h1>
+
+
+    <table id="Liste" border="2">
+        <tr>
+            <th id=tblId>Id</th>
+            <th id=tblName>Name</th>
+            <th id=tblSurname>Surname</th>
+            <th id=tblNumber>Number</th>
+            <th id=tblAge>Age</th>
+            <th id=tblGpa>Gpa</th>
+        </tr>
+        <tbody id="studentList"></tbody>
+    </table>
+    <div id=appId>
+        <input type="text" id="textId" style="display: none;">
+        Name : <input type="text" id="textName">
+        Surname : <input type="text" id="textSurname">
+        Number : <input type="text" id="textNumber">
+        Age : <input type="text" id="textAge">
+        Gpa : <input type="text" id="textGpa">
+        <input type="button" value="ADD" id="add" onclick="saveStudent()">
+
+    </div>
+</body>
+
+</html>
