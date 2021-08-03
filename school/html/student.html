@@ -3,35 +3,44 @@
 
 <head>
     <link rel="stylesheet" href="../css/student.css">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="../jquery/student.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body>
-    <h1>STUDENT LIST</h1>
-
-
-    <table id="Liste" border="2">
-        <tr>
-            <th id=tblId>Id</th>
-            <th id=tblName>Name</th>
-            <th id=tblSurname>Surname</th>
-            <th id=tblNumber>Number</th>
-            <th id=tblAge>Age</th>
-            <th id=tblGpa>Gpa</th>
-        </tr>
-        <tbody id="studentList"></tbody>
-    </table>
-    <div id=appId>
-        <input type="text" id="textId" style="display: none;">
-        Name : <input type="text" id="textName">
-        Surname : <input type="text" id="textSurname">
-        Number : <input type="text" id="textNumber">
-        Age : <input type="text" id="textAge">
-        Gpa : <input type="text" id="textGpa">
-        <input type="button" value="ADD" id="add" onclick="saveStudent()">
-
+    <h1 id=studentHd class="display-3"> STUDENT LIST</h1>
+    <div class="container">
+        <table class="table" id="liste">
+            <tr>
+                <th class="table-danger" scope="col" id=tblId>Id</th>
+                <th class="table-danger" scope="col" id=tblName>Name</th>
+                <th class="table-danger" scope="col" id=tblSurname>Surname</th>
+                <th class="table-danger" scope="col" id=tblNumber>Number</th>
+                <th class="table-danger" scope="col" id=tblAge>Age</th>
+                <th class="table-danger" scope="col" id=tblGpa>Gpa</th>
+                <th class="table-danger" scope="col" id=tblSchoolid>School Name</th>
+                <th class="table-danger" scope="col" id=tblApply>Apply</th>
+            </tr>
+            <tbody id="studentList"></tbody>
+        </table>
+    </div><br>
+    <div id="appId" style="margin-left: 50px;">
+        <form action="#" id="formOne" onsubmit="saveStudent('#formOne','memberSave')">
+            <input type="text" id="textId" style="display: none;">
+            <font id=name color="blue">Name :</font> <input type="text" id="textName" scope="row" required>
+            <font id=surname color="blue">Surname :</font> <input type="text" id="textSurname" scope="row" required>
+            <font id=number color="blue">Number :</font> <input type="text" id="textNumber" scope="row" required>
+            <br><br>
+            <font id=age color="blue">Age :</font> <input type="text" id="textAge" scope="row" required>
+            <font id=gpa color="blue">Gpa :</font> <input type="text" id="textGpa" scope="row" required>
+            <font id=schoolName color="blue">School Name :</font>
+            <select id="selectId">
+            </select>
+            <input class="btn btn-outline-success" type="submit" value="SAVE" id="add"
+                style="width: 10%; height: 300%; margin: 10px;">
+        </form>
     </div>
 </body>
 

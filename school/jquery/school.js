@@ -1,8 +1,4 @@
-// var schools = [{ id: "45", name: "Firat University", code: "FU", active: "true" },
-// { id: "52", name: "İnönü University", code: "IU", active: "true" }]
 var schools = []
-
-
 $(document).ready(function () {
     getSchoolList()
 });
@@ -15,11 +11,11 @@ function getSchoolList() {
             school +=
                 `
             <tr >               
-                <td>  ${obj.id}  </td>
-                <td>  ${obj.name} </td>
-                <td>  ${obj.code} </td>
-                <td>  ${obj.active} </td>
-                <td>   <input type=\'button\'value=\'Update\' class= \'btn btn-info \' onclick=\'onRowClick("${key}")\'> 
+                <td class="table-warning">  ${obj.id}  </td>
+                <td class="table-warning">  ${obj.name} </td>
+                <td class="table-warning">  ${obj.code} </td>
+                <td class="table-warning">  ${obj.active} </td>
+                <td class="table-warning">   <input type=\'button\'value=\'Update\' class= \'btn btn-info \' onclick=\'onRowClick("${key}")\'> 
                  <input type=\'button\'value=\'Delete\' class= \'btn btn-danger\' id=\'delete   \' onclick=\'onRowDelete("${obj.id}")\'> </td>
             </tr>
         `
@@ -27,24 +23,19 @@ function getSchoolList() {
         $("#schoolList").html(school);
     })
 }
-
 function onRowClick(index) {
-
     $("#textId").val(schools[index].id);
     $('#textName').val(schools[index].name);
     $('#textCode').val(schools[index].code);
     $('#checkActive').val(schools[index].active);
 }
-
 function emptyForm() {
-
     $("#textId").val("");
     $('#textName').val("");
     $('#textCode').val("");
     $('#checkActive').val("");
 }
 function onRowDelete(id) {
-
     var school = { id: id };
     console.log(id);
     $.ajax({
@@ -56,16 +47,12 @@ function onRowDelete(id) {
             emptyForm();
         },
         error: function (error) { alert(error); }
-
     });
-
 }
-
 function saveSchool() {
     if ($('#textId').val() === null || $('#textId').val() === "") addSchool()
     else updateSchool()
 }
-
 function addSchool() {
     var school = { name: $('#textName').val(), code: $("#textCode").val(), active: $("#checkActive").is(':checked') }
     $.ajax({
@@ -86,7 +73,6 @@ function addSchool() {
     window.location.reload();
     emptyForm()
 }
-
 function updateSchool() {
     var school = { id: $('#textId').val(), name: $('#textName').val(), code: $("#textCode").val(), active: $("#checkActive").is(':checked') }
     $.ajax({
@@ -100,7 +86,6 @@ function updateSchool() {
             console.log(errMsg);
         }
     });
-
 }
 
 
