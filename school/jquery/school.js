@@ -1,11 +1,14 @@
 var schools = []
+var schoolSearch = { name: '', code: '' }
 $(document).ready(function () {
     getSchoolList()
+    searchSchool()
+    clearForm()
 });
 function getSchoolList() {
-    $.getJSON("http://localhost:8080/schools").done(function (data) {
+    $.getJSON("http://localhost:8080/school/search/findBySchool?name=" + schoolSearch.name + "&code=" + schoolSearch.code).done(function (data) {
         console.log(data)
-        schools = data
+        schools = data._embedded.schools
         var school = "";
         $.each(schools, function (key, obj) {
             school +=
@@ -27,22 +30,22 @@ function onRowClick(index) {
     $("#textId").val(schools[index].id);
     $('#textName').val(schools[index].name);
     $('#textCode').val(schools[index].code);
-    $('#checkActive').val(schools[index].active);
+    $('#checkActive').prop('checked', schools[index].active);
 }
 function emptyForm() {
     $("#textId").val("");
     $('#textName').val("");
     $('#textCode').val("");
-    $('#checkActive').val("");
+    $('#checkActive').prop('checked', false);
 }
 function onRowDelete(id) {
     var school = { id: id };
     console.log(id);
     $.ajax({
-        url: 'http://localhost:8080/schools?id=' + school.id,
+        url: 'http://localhost:8080/school/' + school.id + '?' + school.id,
         type: 'DELETE',
         success: function () {
-            alert('record has been deleted');
+            alert('SUCCESSFULLY DELETED');
             getSchoolList();
             emptyForm();
         },
@@ -57,19 +60,19 @@ function addSchool() {
     var school = { name: $('#textName').val(), code: $("#textCode").val(), active: $("#checkActive").is(':checked') }
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/schools",
+        url: "http://localhost:8080/school",
         data: JSON.stringify(school),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            alert("sadasd")
+            alert("SUCCESSFULLY ADDED")
             getSchoolList()
         },
         error: function (errMsg) {
             console.log(errMsg);
         }
     });
-    window.location.href = "http://127.0.0.1:5501/html/deneme.html?#";
+    window.location.href = "http://127.0.0.1:5501/html/school.html?#";
     window.location.reload();
     emptyForm()
 }
@@ -77,7 +80,7 @@ function updateSchool() {
     var school = { id: $('#textId').val(), name: $('#textName').val(), code: $("#textCode").val(), active: $("#checkActive").is(':checked') }
     $.ajax({
         type: "PUT",
-        url: "http://localhost:8080/schools/" + school.id,
+        url: "http://localhost:8080/school/" + school.id,
         data: JSON.stringify(school),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -87,6 +90,14 @@ function updateSchool() {
         }
     });
 }
+function searchSchool() {
+    schoolSearch = { name: $("#searchName").val(), code: $("#searchCode").val() }
+    getSchoolList()
+}
+function clearForm() {
+    emptyForm()
+}
+
 
 
 

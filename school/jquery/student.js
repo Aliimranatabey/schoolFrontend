@@ -1,12 +1,15 @@
 var student = []
+var studentSearch = { name: '', surname: '', number: '', age: '', gpa: '', schoolName: '' }
 $(document).ready(function () {
     getStudentList()
     getSchoolPull()
+    searchStudent()
+    clearForm()
 });
 function getStudentList() {
-    $.getJSON("http://localhost:8080/students").done(function (data) {
-        console.log(data)
-        students = data
+    $.getJSON("http://localhost:8080/student/search/findAllSearch?name=" + studentSearch.name + "&surname=" + studentSearch.surname + "&number=" + studentSearch.number + "&age=" + studentSearch.age + "&gpa=" + studentSearch.gpa + "&school=" + studentSearch.schoolName).done(function (data) {
+
+        students = data._embedded.students
         var student = "";
         $.each(students, function (key, obj) {
             student +=
@@ -28,9 +31,9 @@ function getStudentList() {
     });
 }
 function getSchoolPull() {
-    $.getJSON("http://localhost:8080/schools").done(function (data) {
-        console.log(data)
-        students = data
+    $.getJSON("http://localhost:8080/school/search/findByActiveTrue").done(function (data) {
+
+        students = data._embedded.schools
         var school = `<option >SEÇİNİZ</option>`;
         $.each(students, function (key, obj) {
             school +=
@@ -61,10 +64,10 @@ function onRowDelete(id) {
     var student = { id: id };
     console.log(id);
     $.ajax({
-        url: 'http://localhost:8080/students?id=' + student.id,
+        url: 'http://localhost:8080/student/' + student.id + '?' + student.id,
         type: 'DELETE',
         success: function () {
-            alert('record has been deleted');
+            alert('SUCCESSFULLY DELETED');
             getStudentList();
             emptyForm();
         },
@@ -76,22 +79,24 @@ function saveStudent() {
     else updateStudent()
 }
 function addStudent() {
-    var student = { name: $('#textName').val(), surname: $("#textSurname").val(), number: $("#textNumber").val(), age: $("#textAge").val(), gpa: $("#textGpa").val(), school: { id: $("#selectId").val() } }
+    var student = { name: $('#textName').val(), surname: $("#textSurname").val(), number: $("#textNumber").val(), age: $("#textAge").val(), gpa: $("#textGpa").val() }
+
+    student.school = $("#selectId")[0].selectedIndex == 0 ? null : { id: $("#selectId").val() }
+    console.log(student)
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/students",
+        url: "http://localhost:8080/student",
         data: JSON.stringify(student),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            console.log(data), $("#selectId").val(data.school.id), getStudentList()
+            alert("SUCCESSFULLY ADDED")
+                , $("#selectId").val(data.school.id), getStudentList()
         },
         error: function (errMsg) {
             console.log(errMsg);
         }
     });
-    window.location.href = "http://127.0.0.1:5501/html/deneme2.html?#";
-    window.location.reload();
     emptyForm()
 }
 function updateStudent() {
@@ -100,7 +105,7 @@ function updateStudent() {
     }
     $.ajax({
         type: "PUT",
-        url: "http://localhost:8080/students/" + student.id,
+        url: "http://localhost:8080/student/" + student.id,
         data: JSON.stringify(student),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -111,3 +116,14 @@ function updateStudent() {
     });
     emptyForm()
 }
+function searchStudent() {
+    studentSearch = { name: $("#searchName").val(), surname: $("#searchSurname").val(), number: $("#searchNumber").val(), age: $("#searchAge").val(), gpa: $("#searchGpa").val(), schoolName: $("#searchSchoolName").val() }
+    getStudentList()
+}
+function clearForm() {
+    emptyForm()
+}
+
+
+
+

@@ -23,7 +23,43 @@
                 <th class="table-danger" scope="col" id=tblSchoolid>School Name</th>
                 <th class="table-danger" scope="col" id=tblApply>Apply</th>
             </tr>
-            <tbody id="studentList"></tbody>
+            <tbody id="studentList">
+                <div class="input-group rounded">
+
+                    <input id="searchName" type="search" onkeyup="searchStudent()" class="form-control rounded"
+                        placeholder="Search Name" aria-label="Search" aria-describedby="search-addon" />
+                    <span class="input-group-text border-0" id="search-addon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input id="searchSurname" type="search" onkeyup="searchStudent()" s class="form-control rounded"
+                        placeholder="Search Surname" aria-label="Search" aria-describedby="search-addon" />
+                    <span class="input-group-text border-0" id="search-addon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input id="searchNumber" type="search" onkeyup="searchStudent()" class="form-control rounded"
+                        placeholder="Search Number" aria-label="Search" aria-describedby="search-addon" />
+                    <span class="input-group-text border-0" id="search-addon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input id="searchAge" type="number" value="Search" onkeyup="searchStudent()"
+                        class="form-control rounded" placeholder="Search Age" aria-label="Search"
+                        aria-describedby="search-addon" />
+                    <span class="input-group-text border-0" id="search-addon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input id="searchGpa" type="number" value="Search" onkeyup="searchStudent()"
+                        class="form-control rounded" placeholder="Search Gpa" aria-label="Search"
+                        aria-describedby="search-addon" />
+                    <span class="input-group-text border-0" id="search-addon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input id="searchSchoolName" type="search" onkeyup="searchStudent()" class="form-control rounded"
+                        placeholder="Search School Name" aria-label="Search" aria-describedby="search-addon" />
+                    <span class="input-group-text border-0" id="search-addon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
+            </tbody>
         </table>
     </div><br>
     <div id="appId" style="margin-left: 50px;">
@@ -33,13 +69,15 @@
             <font id=surname color="blue">Surname :</font> <input type="text" id="textSurname" scope="row" required>
             <font id=number color="blue">Number :</font> <input type="text" id="textNumber" scope="row" required>
             <br><br>
-            <font id=age color="blue">Age :</font> <input type="text" id="textAge" scope="row" required>
-            <font id=gpa color="blue">Gpa :</font> <input type="text" id="textGpa" scope="row" required>
+            <font id=age color="blue">Age :</font> <input type="number" id="textAge" scope="row" required>
+            <font id=gpa color="blue">Gpa :</font> <input type="number" step="0.1" id="textGpa" scope="row" required>
             <font id=schoolName color="blue">School Name :</font>
             <select id="selectId">
             </select>
             <input class="btn btn-outline-success" type="submit" value="SAVE" id="add"
                 style="width: 10%; height: 300%; margin: 10px;">
+            <input class="btn btn-outline-success" type="button" onclick="clearForm()" value="CLEAR" id="clear"
+                style="width: 10%; height: 10%;">
         </form>
     </div>
 </body>
