@@ -8,7 +8,7 @@ $(document).ready(function () {
 });
 function getStudentList() {
     $.getJSON("http://localhost:8080/student/search/findAllSearch?name=" + studentSearch.name + "&surname=" + studentSearch.surname + "&number=" + studentSearch.number + "&age=" + studentSearch.age + "&gpa=" + studentSearch.gpa + "&school=" + studentSearch.schoolName).done(function (data) {
-
+        console.log(data)
         students = data._embedded.students
         var student = "";
         $.each(students, function (key, obj) {
@@ -31,8 +31,8 @@ function getStudentList() {
     });
 }
 function getSchoolPull() {
-    $.getJSON("http://localhost:8080/school/search/findByActiveTrue").done(function (data) {
-
+    $.getJSON("http://localhost:8080/school").done(function (data) {
+        console.log(data)
         students = data._embedded.schools
         var school = `<option >SEÇİNİZ</option>`;
         $.each(students, function (key, obj) {
@@ -79,8 +79,8 @@ function saveStudent() {
     else updateStudent()
 }
 function addStudent() {
-    var student = { name: $('#textName').val(), surname: $("#textSurname").val(), number: $("#textNumber").val(), age: $("#textAge").val(), gpa: $("#textGpa").val() }
-    console.log(student)
+
+    var student = { name: $('#textName').val(), surname: $("#textSurname").val(), number: $("#textNumber").val(), age: $("#textAge").val(), gpa: $("#textGpa").val(), school: { id: $("#selectId").val() } }
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/student",
@@ -89,13 +89,16 @@ function addStudent() {
         dataType: "json",
         success: function (data) {
             alert("SUCCESSFULLY ADDED")
-                , $("#selectId").val(data.school.id), getStudentList()
+            console.log(data), $("#selectId").val(data.school.id), getStudentList()
         },
         error: function (errMsg) {
             console.log(errMsg);
         }
     });
+
+
     emptyForm()
+
 }
 function updateStudent() {
     var student = {
