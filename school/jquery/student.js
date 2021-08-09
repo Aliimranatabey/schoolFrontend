@@ -80,8 +80,6 @@ function saveStudent() {
 }
 function addStudent() {
     var student = { name: $('#textName').val(), surname: $("#textSurname").val(), number: $("#textNumber").val(), age: $("#textAge").val(), gpa: $("#textGpa").val() }
-
-    student.school = $("#selectId")[0].selectedIndex == 0 ? null : { id: $("#selectId").val() }
     console.log(student)
     $.ajax({
         type: "POST",
